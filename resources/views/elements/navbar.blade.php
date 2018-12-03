@@ -1,8 +1,8 @@
 
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary id="mainNavbar">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" id="mainNavbar">
 
-    <a class="navbar-brand" href="#">AUTH</a>
+    <a class="navbar-brand" href="/">AUTH</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,13 +29,13 @@
                       </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
+                        <a class="nav-link" href="{{ route('login') }}">
                             <i class="fa fa-sign-in"></i>
                             Login
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">
+                        <a class="nav-link" href="{{ route('register') }}">
                             <i class="fa fa-user-plus"></i>
                             Registro
                         </a>
