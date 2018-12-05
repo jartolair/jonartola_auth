@@ -14,11 +14,11 @@
       <link rel="stylesheet" href="{{ url("font-awesome/css/font-awesome.min.css") }}">
   </head>
 
-  <body>
+  <body style="padding-top:100px;">
 
       @include("elements.navbar")
 
-      <main class="p-0">
+      <main class="p-0" >
           @yield("content")
       </main>
 

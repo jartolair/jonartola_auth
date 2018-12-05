@@ -20,3 +20,10 @@ Route::get('/', ['as'=>'home','uses'=>'AppController@index']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/perfil', 'PerfilController@index')->name('perfil');
+
+Route::get('/cambiarPerfil', 'PerfilController@cambiar')->name('cambiarPerfil');
+
+Route::get('/mensajes', 'MensajesController@index')->name('mensajes');
+
