@@ -17,12 +17,12 @@
                 </li>
                 @auth
                 <li id="initial" class="nav-item">
-                    <a class="nav-link" href="{{ route('mensajes') }}">
+                    <a class="nav-link" href="{{ route('messages') }}">
                         Mensajes
                     </a>
                 </li>
                 <li id="initial" class="nav-item">
-                    <a class="nav-link" href="/home">
+                    <a class="nav-link" href="{{ route('messages.create') }}">
                         Nuevo mensaje
                     </a>
                 </li>

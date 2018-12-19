@@ -9,7 +9,7 @@ class PerfilController extends Controller
 {
      public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
 
     public function index(Request $request)
@@ -23,6 +23,6 @@ class PerfilController extends Controller
     	$user->name=$request->input('nombre');
     	$user->email=$request->input('email');
     	$user->save();
-    	return redirect('/perfil');
+    	return redirect('perfil');
     }
 }
