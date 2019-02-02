@@ -34,7 +34,13 @@
         </td>
         <td>
         @if ($fechamargen<strtotime($m->datetime))
-          <a title="Editar" href="{{route ('messages.edit',$m->id)}}"><i class="fa fa-pencil"></i></a>
+          <form style="display:inline" action="{{route ('messages.edit',$m->id)}}" method="POST">
+
+           {{ csrf_field() }}
+           <button type="submit" id="editar" style="background: none;padding: 0px;border: none;">
+              <i class="fa fa-pencil"></i>
+            </button>
+        </form>
         @endif
         </td>
         <td>
@@ -76,7 +82,6 @@
           <a title="Ver" href="{{route ('messages.show',$m->id)}}"><i class="fa fa-eye" style="color:green"></i></a>
           </td>
           <td>
-            <a title="Responder" href="{{route ('messages.response',$m->id)}}"><i class="fa fa-share"></i></a>
           </td>
           <td>
           <form style="display:inline" action="{{ route('messages.destroy',$m->id) }}" method="POST">

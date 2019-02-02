@@ -44,16 +44,27 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'to' => 'required|max:255|email',
+            'about' => 'required|string|max:40',
+            'message' => 'required|string|max:255',
+            'link' =>'url|nullable',
+        ]);
         date_default_timezone_set('Europe/Madrid');
         $message=new Message();
         $message->from=Auth::user()->id;
 
-        $to=User::where('name',$request->input('to'))->first();
-        $message->to=$to->id;
-        $message->message=$request->input('message');
-        $message->datetime=date('Y-m-j H:i:s');
-        $message->save();
-        return $this->index();
+        $to=User::where('email',$request->input('to'))->first();
+        if($to){
+            $message->to=$to->id;
+            $message->about=$request->input('about');
+            $message->message=$request->input('message');
+            $message->link=$request->input('link');
+            $message->datetime=date('Y-m-j H:i:s');
+            $message->save();
+            return $this->index();
+        }
+        return view('message.create', ['noExiste'=>true]);
     }
 
     /**
@@ -65,7 +76,7 @@ class MessageController extends Controller
     public function show($id)
     {
         $message=Message::find($id);
-        return view('messages.show',array('message'=>$message));
+        return view('message.show',array('message'=>$message));
     }
 
     /**
@@ -74,9 +85,10 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $message=Message::find($id);
+        return view('message.edit',array('message'=>$message));
     }
 
     /**
@@ -88,7 +100,26 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'to' => 'required|max:255|email',
+            'about' => 'required|string|max:40',
+            'message' => 'required|string|max:255',
+            'link' =>'url|nullable',
+        ]);
+
+
+
+        $message =Message::find($id);
+
+        $message->from=Auth::user()->id;
+        $to=User::where('email',$request->input('to'))->first();
+        $message->to=$to->id;
+        $message->about=$request->input('about');
+        $message->message=$request->input('message');
+        $message->link=$request->input('link');
+        $message->datetime=date('Y-m-j H:i:s');
+        $message->save();
+        return $this->index();
     }
 
     /**
@@ -99,6 +130,7 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message=Message::find($id)->delete();
+        return $this->index();
     }
 }

@@ -31,12 +31,13 @@ Route::get('/message', 'MessageController@index')->name('messages');
 
 Route::get('/message/create', 'MessageController@create')->name('messages.create');
 
-Route::post('/message/store', 'MessageController@store')->name('messages.store');
+Route::put('/message/store', 'MessageController@store')->name('messages.store');
 
-Route::get('/message/show', 'MessageController@show')->name('messages.show');
+Route::get('/message/show/{id}', 'MessageController@show')->name('messages.show');
 
-Route::post('/message/destroy', 'MessageController@destroy')->name('messages.destroy');
+Route::delete('/message/destroy/{id}', 'MessageController@destroy')->name('messages.destroy');
 
-Route::post('/message/edit', 'MessageController@edit')->name('messages.edit');
+Route::post('/message/edit/{id}', 'MessageController@edit')->name('messages.edit');
 
-Route::post('/message/response', 'MessageController@response')->name('messages.response');
+Route::put('/message/update/{id}', 'MessageController@update')->name('messages.update');
+
