@@ -15,6 +15,13 @@
                     @endif
 
                     You are logged in!
+                    <br>
+                    Iniciaste sesion en {{Cookie::get('logueo')}}
+
+                    <div>
+                        <h3>Para guardar la session en la base de datos</h3>
+                        <img src="cambio_env.png">
+                    </div>
                 </div>
             </div>
         </div>
