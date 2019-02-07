@@ -11,7 +11,12 @@
                         <b>Nombre:</b> {{ Auth::user()->name }}<br>
                         <b>Email:</b> {{ Auth::user()->email }}<br>
                         <b>Fecha de creacion:</b> {{ Auth::user()->created_at->format('d/m/Y') }}<br>
-                        <b>Rol:</b> {{ Auth::user()->role_id!=null? Auth::user()->role->nombre : "Sin rol" }}<br>
+                        <b>Roles:</b> 
+                        <ul>
+                            @foreach(Auth::user()->roles as $role)
+                                <li>{{$role->nombre}}</li>
+                            @endforeach
+                        </ul>
                         <a href="?editable=true">Editar</a>
                     @else
                         <form action="{{ route('cambiarPerfil') }}" method="get">
